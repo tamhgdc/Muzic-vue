@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import "mixins";
+
+html {
+    font-size: 62.5%;
+    @apply bg-white;
+}
+
+.lightbox {
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,.2)] z-[9998];
+}
+
+.swal2-popup {
+    font-size: 1.6rem !important;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#app {
+    @apply text-black bg-white;
+    font-family: 'Quicksand', sans-serif;
+    user-select: none;
+    font-size: clamp(.75rem, 2.25vmin, 1.6rem);
+    max-width: 1440px;
+    min-height: 100vh;
+    margin: 0 auto;
+    @include flexbox(center, center, column);
+
+    .container {
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .header,
+    .navigation-menu  {
+        @apply bg-primary;
+    }
+
+    .page-404, .home-section,
+    .categories-section, .top100-section,
+    .playlist-detail,
+    .categories-detail {
+        width: 100%;
+        min-height: calc(100vh - 24rem);
+        margin-top: 7rem;
+        margin-bottom: 17rem;
+        @apply bg-white;
+    }
+
+    // Form
+    .login, 
+    .register {
+        @apply transition-all ease-out-expo;
+        
+        input:not([type="checkbox"]) {
+            @apply outline-none p-4 rounded-lg bg-transparent border-2 border-white;
+    
+            & ~ h3 {
+                @apply transition-all ease-out-expo px-[1rem];
+            }
+    
+            &:focus {
+                @apply border-emerald;
+            }
+    
+            &:focus ~ h3 {
+                @apply text-emerald translate-x-[1rem] translate-y-[-2.5rem] text-[1.25rem] bg-secondary rounded-[0.4rem];
+            }
+        }
+    
+        input[type="checkbox"] {
+            @apply appearance-none w-[1.8rem] h-[1.8rem] border-[0.15rem] border-black outline-none rounded-[0.4rem] relative cursor-pointer transition-all ease-out-expo;
+    
+            &:checked {
+                @apply border-emerald;
+            }
+    
+            &::before {
+                @apply content-[''] w-[0.8rem] h-[0.8rem] bg-emerald transition-transform ease-out-expo;
+                @include center;
+                transform: scale(0);
+            }
+    
+            &:checked::before {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    
+        .title {
+            @apply relative inline-block transition-colors ease-out-expo;
+    
+            &:hover {
+                @apply text-emerald;
+            }
+    
+            &::before {
+                @apply content-[''] absolute w-full h-[0.2rem] left-0 bottom-0 bg-gradient-primary scale-x-0 origin-bottom-right transition-transform ease-out-expo;
+            }
+    
+            &:hover::before {
+                @apply scale-x-100 origin-bottom-left;
+            }
+        }
+    }
+}
